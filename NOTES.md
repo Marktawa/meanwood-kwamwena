@@ -2,6 +2,21 @@
 
 - Blog, Facebook Page, LinkedIn Page, Facebook Group, Personal Page
 
+## Brainstorming
+
+Publish a brainstorming seesion about the community hub idea on your Medium account. Include information on:
+- How you initially came up with the idea
+- What sparked your interest about the idea
+- What excited when you were thinking about the idea
+- What challenges/hurdles emerged as you were thinking about it?
+- What you decided to research on based on the idea?
+- Discovery or deductions you made from test or research you conducted
+- What made you decide to take on the idea
+- What will the idea look like?
+- What steps you will make to implement the idea?
+
+## Loop
+
 The loop looks like this:
 
 - Static website (Actual: MKCH), Static Website Template (Muuyu Labs), Facebook post page, Facebook post Group, Whatsapp Group post, LinkedIn post, Update CV (MKCH, ML)
@@ -30,6 +45,8 @@ The loop looks like this:
 - Lusaka Water Notice Board
 - Zambia Police Notice Board
 - Emergency Hotlines (Police, Ambulance, Fire) Info
+- Local Business List
+- Price Check Table
 
 ## Personal Profile
 

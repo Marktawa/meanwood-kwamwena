@@ -2,7 +2,38 @@
 
 - Blog, Facebook Page, LinkedIn Page, Facebook Group, Personal Page
 
-The loop looks like this
+The loop looks like this:
+
+- Static website (Actual: MKCH), Static Website Template (Muuyu Labs), Facebook post page, Facebook post Group, Whatsapp Group post, LinkedIn post, Update CV (MKCH, ML)
+
+## Sequence of Events
+
+- Create website with welcome message
+- Create LinkedIn page with Welcome post and link to website
+- Create Facebook page with Welcome post and link to website
+- Create Facebook group with Welcome post and link to website
+- Create Whatsapp group with Welcome post and link to website
+
+## Projects
+
+- Static website (About Us, Contact Us, News)
+- Blog website
+- Latest Posts
+- Daily Live Blog feed
+- Notice Board
+- Events Notice Board
+- Announcements Notice Board
+- Jobs Notice Board
+- Real Estate Notice Board
+- ZESCO Notice Board (Loadshedding Schedule, Faults)
+- Chongwe Municipal Council Notice Board
+- Lusaka Water Notice Board
+- Zambia Police Notice Board
+- Emergency Hotlines (Police, Ambulance, Fire) Info
+
+## Personal Profile
+
+- Founder and Community Manager
 
 ## Blog Articles
 

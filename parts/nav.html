@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+                0 1px 4px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+        }
+
+        .nav-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 140px;
+            right: 5%;
+            width: 250px;
+            height: 180px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            display: none;
+            z-index: 999;
+        }
+
+        .sidebar.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="../logo.png" alt="Logo" class="logo">
+        <h1 class="nav-title">Kwamwena</h1>
+        <a href="#" class="menu-link">MENU</a>
+    </nav>
+
+    <div class="sidebar">
+        <a href="#">CLOSE</a>
+    </div>
+
+    <script>
+        const menuLink = document.querySelector('.menu-link');
+        const sidebar = document.querySelector('.sidebar');
+
+        menuLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            sidebar.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

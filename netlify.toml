@@ -1,0 +1,3 @@
+[build]
+  base = "prod"
+  publish = "prod"

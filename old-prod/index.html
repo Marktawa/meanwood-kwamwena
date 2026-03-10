@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwamwena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white;
+            width: 100vw;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: black;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+                0 1px 4px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+        }
+
+        .nav-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: opacity 0.2s ease;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 2px solid black;
+        }
+
+        .menu-link:hover {
+            opacity: 0.6;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding-top: 150px;
+            padding-bottom: 120px;
+            max-width: 700px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        article {
+            margin-bottom: 80px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .post-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .post-title {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .post-excerpt {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .read-more {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid black;
+            padding-bottom: 2px;
+            transition: opacity 0.2s ease;
+        }
+
+        .read-more:hover {
+            opacity: 0.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            margin: 80px 0 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 16px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section em {
+            color: #666;
+        }
+
+        .cta-section a {
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid black;
+        }
+
+        footer {
+            border-top: 1px solid #ddd;
+            padding-top: 60px;
+            margin-top: 60px;
+        }
+
+        footer h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        footer p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 16px;
+        }
+
+        footer a {
+            color: black;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            opacity: 0.6;
+        }
+
+        footer small {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: black;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-item:active {
+            opacity: 0.6;
+        }
+
+        .nav-text {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+
+            nav {
+                top: 20px;
+                width: 85%;
+                padding: 12px 20px;
+            }
+
+            .logo {
+                height: 32px;
+            }
+
+            .menu-link {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1 class="nav-title">Kwamwena</h1>
+        <a href="#contact" class="menu-link">Contact</a>
+    </nav>
+
+    <div class="content">
+        <article>
+            <img src="cover.jpg" alt="Blog post"
+                class="featured-image">
+            <div class="post-meta">September 01, 2025</div>
+            <h2 class="post-title">Welcome to Kwamwena</h2>
+            <p class="post-excerpt">
+                We are excited to introduce the Meanwood Kwamwena Community Hub, a digital platform created by and for
+                our community. What started as a simple idea over conversations with neighbours has grown into something
+                we believe can truly transform how we . . .
+            </p>
+            <a href="kwamwena.html" class="read-more">Read More</a>
+        </article>
+
+        <div id="contact" class="cta-section">
+            <h2>Get In Touch</h2>
+
+            <p>Follow us, share with your neighbours, and let's build something amazing together.</p>
+
+            <p><em>For questions, suggestions, or to get involved with the Meanwood Kwamwena Community Hub, please contact the founder, Mark Munyaka at <a href="mailto:markmunyaka@gmail.com">markmunyaka@gmail.com</a>.</em>
+            </p>
+
+            <p><em>Together, we're building more than a website, we're building community.</em></p>
+        </div>
+
+        <footer>
+            <h3>Legal Disclaimer</h3>
+            <p>The information provided on this platform is for general informational purposes only. While we strive to
+                keep the information up to date and correct, we make no representations or warranties of any kind about
+                the completeness, accuracy, reliability, or availability of the information. Any reliance you place on
+                such information is therefore strictly at your own risk.</p>
+
+            <h3>Privacy Policy</h3>
+            <p>We respect your privacy and are committed to protecting your personal data. We collect minimal
+                information necessary to provide our community services. We do not sell, trade, or otherwise transfer
+                your personal information to third parties without your consent, except as described in this policy. We
+                may use your information to improve our services and communicate with you about community matters.</p>
+
+            <h3>Terms of Service</h3>
+            <p>By using this platform, you agree to use it responsibly and in accordance with local laws. Content shared
+                should be respectful, accurate, and relevant to our community. We reserve the right to remove
+                inappropriate content and restrict access for users who violate these terms. Users are responsible for
+                the accuracy of information they contribute to the platform.</p>
+
+            <p><small>&copy; 2022 - 2025 Meanwood Kwamwena Community Hub. All rights reserved.</small></p>
+        </footer>
+    </div>
+</body>
+
+</html>

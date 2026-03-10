@@ -1,316 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kwamwena</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: white;
-            width: 100vw;
-            min-height: 100vh;
-            font-family: 'Inter', sans-serif;
-            color: black;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        nav {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: white;
-            padding: 16px 24px;
-            border-radius: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 90%;
-            max-width: 1200px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
-                0 1px 4px rgba(0, 0, 0, 0.04);
-            z-index: 1000;
-        }
-
-        .nav-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .logo {
-            height: 40px;
-            width: auto;
-        }
-
-        .menu-link {
-            text-decoration: none;
-            color: black;
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: opacity 0.2s ease;
-            flex-direction: column;
-            align-items: center;
-            border-bottom: 2px solid black;
-        }
-
-        .menu-link:hover {
-            opacity: 0.6;
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-            padding-top: 150px;
-            padding-bottom: 120px;
-            max-width: 700px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        article {
-            margin-bottom: 80px;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            min-height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 24px;
-        }
-
-        .post-meta {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .post-title {
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: black;
-        }
-
-        .post-excerpt {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 16px;
-        }
-
-        .read-more {
-            display: inline-block;
-            text-decoration: none;
-            color: black;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid black;
-            padding-bottom: 2px;
-            transition: opacity 0.2s ease;
-        }
-
-        .read-more:hover {
-            opacity: 0.6;
-        }
-
-        .cta-section {
-            text-align: center;
-            padding: 60px 20px;
-            margin: 80px 0 60px;
-        }
-
-        .cta-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 16px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-section em {
-            color: #666;
-        }
-
-        .cta-section a {
-            text-decoration: none;
-            color: #333;
-            border-bottom: 1px solid black;
-        }
-
-        footer {
-            border-top: 1px solid #ddd;
-            padding-top: 60px;
-            margin-top: 60px;
-        }
-
-        footer h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 16px;
-        }
-
-        footer p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 16px;
-        }
-
-        footer a {
-            color: black;
-            text-decoration: underline;
-        }
-
-        footer a:hover {
-            opacity: 0.6;
-        }
-
-        footer small {
-            font-size: 13px;
-            color: #777;
-        }
-
-        .footer-nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            color: black;
-            transition: opacity 0.2s ease;
-        }
-
-        .nav-item:active {
-            opacity: 0.6;
-        }
-
-        .nav-text {
-            font-size: 10px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 768px) {
-
-            nav {
-                top: 20px;
-                width: 85%;
-                padding: 12px 20px;
-            }
-
-            .logo {
-                height: 32px;
-            }
-
-            .menu-link {
-                font-size: 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="screen.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
 </head>
 
 <body>
-    <nav>
-        <img src="logo.png" alt="Logo" class="logo">
-        <h1 class="nav-title">Kwamwena</h1>
-        <a href="#contact" class="menu-link">Contact</a>
-    </nav>
+    <h1>Kwamwena</h1>
 
-    <div class="content">
-        <article>
-            <img src="cover.jpg" alt="Blog post"
-                class="featured-image">
-            <div class="post-meta">September 01, 2025</div>
-            <h2 class="post-title">Welcome to Kwamwena</h2>
-            <p class="post-excerpt">
-                We are excited to introduce the Meanwood Kwamwena Community Hub, a digital platform created by and for
-                our community. What started as a simple idea over conversations with neighbours has grown into something
-                we believe can truly transform how we . . .
-            </p>
-            <a href="kwamwena.html" class="read-more">Read More</a>
-        </article>
+    <h2>Welcome</h2>
+    <p>Welcome to the Meanwood Kwamwena Community Hub. Your one stop for everything related to Meanwood Kwamwena Valley.</p>
 
-        <div id="contact" class="cta-section">
-            <h2>Get In Touch</h2>
+    <h2>Posts</h2>
+    <h3>Meanwood Kwamwena Schools Directory</h3>
+    <p>Tuesday 10 March 2026</p>
+    <img src="schooldirectory.png" />
+    <p>We are excited to be putting together a directory of schools in Meanwood Kwamwena! Our goal is to make it easier for families and community members to find information about schools in our area. Each school listing will include the school name, academic programs on offer, address, GPS location, and working hours.</p>
+    <p>We warmly invite all schools in Meanwood Kwamwena to reach out and help us ensure that your information is accurate and up to date. Your participation means a lot to our community, and we are truly grateful for your support!</p>
 
-            <p>Follow us, share with your neighbours, and let's build something amazing together.</p>
+    <h3>Meanwood Kwamwena Business Directory</h3>
+    <p>Tuesday 10 March 2026</p>
+    <img src="businessdirectory.png" />
+    <p>We are excited to be putting together a directory of businesses in Meanwood Kwamwena! Our goal is to make it easier for community members to discover and access the wonderful services available in our area. Each business listing will include the business name, business type, services on offer, contact number, address, GPS location, and working hours.</p>
+    <p>We warmly invite all businesses in Meanwood Kwamwena to reach out and help us ensure that your information is accurate and up to date. Your participation plays a vital role in supporting our community, and we are truly grateful for your involvement!</p>
+    <p>Please feel free to contact us on +260965982075.</p>
 
-            <p><em>For questions, suggestions, or to get involved with the Meanwood Kwamwena Community Hub, please contact the founder, Mark Munyaka at <a href="mailto:markmunyaka@gmail.com">markmunyaka@gmail.com</a>.</em>
-            </p>
+    <h3>ECZ Inspection of the Provisional Voter's Register</h3>
+    <p>Wednesday 4 March 2026</p>
+    <img src="ecz-verification.jpg" />
+    <p>ECZ has continued to encourage all registered voters to verify their details in the Provisional Voters register ahead of the general elections which will be held this year. This process will allow you to check for any clerical errors, replace damaged or defaced voters cards and remove deceased members from the voter’s database. The Verification can be done on your mobile phone by dialing *214# followed by option 1 and 1 again. You can also visit your nearest polling station to verify your details.Join Chongwe Municipal Council and Chongwe Community Radio Station on 104.5FM Tomorrow at 16:00 Hours for more insight on this important activity.</p>
+    <p>This post has been sourced from Chongwe Municipal Council.</p>
 
-            <p><em>Together, we're building more than a website, we're building community.</em></p>
-        </div>
+    <h3>Box Crossing Point in Kwamwena Phase 3 Completed</h3>
+    <p>Friday 2 January 2026</p>
+    <img src="crossing-point.jpg" />
+    <p>As we begin the new year we are happy to announce the Box crossing point in Meanwood Kwamwena Phase 3 has been completed and is now open to the public.</p>
+    <p>During the works, the Local Authority in the company of His Worship The Mayor, Mr. Christopher Habeenzu, District Commissioner Dr. Evans Lupiya, Madido Ward Councillor Ms. Janet Chisenga alongside senior management and community members monitored the progress of the works.</p>
+    <p>The delegation had expressed satisfaction with the pace and quality of the works and noted the project's expected positive impact on the local community.</p>
+    <p>The crossing point is expected to help with the smooth flow of water and traffic preventing any possible flooding incidents. The crossing point is located in the central area of Meanwood Kwamwena Phase 3 near the popular bus drop off point called "Green Shop".</p>
+    <p>This post has been sourced from Chongwe Municipal Council.</p>
 
-        <footer>
-            <h3>Legal Disclaimer</h3>
-            <p>The information provided on this platform is for general informational purposes only. While we strive to
-                keep the information up to date and correct, we make no representations or warranties of any kind about
-                the completeness, accuracy, reliability, or availability of the information. Any reliance you place on
-                such information is therefore strictly at your own risk.</p>
+    <h3>Chongwe Council engages Kwamwena Residents on public health</h3>
+    <p>Monday 29 December 2025</p>
+    <img src="meeting.jpg" />
+    <p>Chongwe Municipal Council top management, led by the Town Clerk, this afternoon held an interactive meeting with homeowners in Kwamwena to discuss public health issues affecting the area. The meeting was convened at the request of the Kwamwena Home Owners Association.</p>
+    <p>In his address, the Town Clerk announced plans to drill boreholes that will service ablution blocks in the area, describing the move as a practical response to sanitation and water challenges. He emphasized that improving public health remains a top priority for the Local Authority.</p>
+    <p>Chongwe Mayor Mr Christopher Habeenzu urged homeowners to work hand in hand with the council and to remain patriotic in protecting public infrastructure and supporting development initiatives. Home Owners Association Chairperson Mr Mutale Mwango commended the council for its responsiveness, noting that the engagement reflected commitment to driving development through collaboration with various partners.</p>
+    <p>The meeting was attended by District Commissioner Dr Evans Lupiya, Madido Area Councillor Ms Janet Chisenga, Madido Ward Development Committee Chairperson Mr James Kamui and community members, who actively participated in the discussions.</p>
+    <p>The meeting was held at the Baptist Community Church in Meanwood Kwamwena Phase 4.</p>
+    <p>This post has been sourced from Chongwe Municipal Council.</p>
 
-            <h3>Privacy Policy</h3>
-            <p>We respect your privacy and are committed to protecting your personal data. We collect minimal
-                information necessary to provide our community services. We do not sell, trade, or otherwise transfer
-                your personal information to third parties without your consent, except as described in this policy. We
-                may use your information to improve our services and communicate with you about community matters.</p>
+    <h2>Contact</h2>
+    <p>Get in touch with Mark Munyaka a representative of Meanwood Kwamwena Community Hub using the following details:</p>
+    <p>Email: admin@kwamwena.link</p>
+    <p>Phone: +260965982075</p>
 
-            <h3>Terms of Service</h3>
-            <p>By using this platform, you agree to use it responsibly and in accordance with local laws. Content shared
-                should be respectful, accurate, and relevant to our community. We reserve the right to remove
-                inappropriate content and restrict access for users who violate these terms. Users are responsible for
-                the accuracy of information they contribute to the platform.</p>
-
-            <p><small>&copy; 2022 - 2025 Meanwood Kwamwena Community Hub. All rights reserved.</small></p>
-        </footer>
-    </div>
+    <footer>Copyright 2026. Meanwood Kwamwena Community Hub. All rights reserved.</footer>
 </body>
-
-</html>

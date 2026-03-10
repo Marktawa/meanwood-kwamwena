@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - Meanwood Kwamwena Community Hub</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * 1. RESET & VARIABLES (MATCHING HOME PAGE)
+         */
+        :root {
+            --primary: #2c5e55;       /* Deep Forest Green */
+            --primary-hover: #1e423b; 
+            --secondary: #d4a373;     /* Muted Gold */
+            --bg-body: #fdfbf7;       /* Warm Off-White */
+            --bg-card: #ffffff;
+            --bg-accent: #f4f1ea;     /* Light Beige */
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            
+            --font-head: 'Inter', sans-serif;
+            --font-body: 'Merriweather', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Utility: Buttons */
+        .btn-primary {
+            display: inline-block; background-color: var(--primary); color: #ffffff;
+            font-family: var(--font-head); font-weight: 600; font-size: 1rem;
+            padding: 12px 28px; border-radius: 4px; border: 2px solid var(--primary);
+            text-align: center; cursor: pointer;
+        }
+        .btn-primary:hover { background-color: transparent; color: var(--primary); }
+
+        .btn-secondary {
+            display: inline-block; background-color: transparent; color: var(--primary);
+            font-family: var(--font-head); font-weight: 600; font-size: 1rem;
+            padding: 12px 28px; border-radius: 4px; border: 2px solid var(--primary);
+            text-align: center; cursor: pointer;
+        }
+        .btn-secondary:hover { background-color: var(--primary); color: #ffffff; }
+
+        .center-btn-wrapper { display: flex; justify-content: center; width: 100%; margin-top: var(--spacing-md); }
+
+        /* 
+         * 2. HEADER & NAVIGATION 
+         */
+        .navbar {
+            background: var(--bg-card); border-bottom: 1px solid var(--border);
+            padding: var(--spacing-sm); position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1400px; margin: 0 auto; position: relative;
+        }
+        .brand { display: flex; align-items: center; gap: var(--spacing-sm); z-index: 102; }
+        .logo { height: 40px; width: auto; }
+        .brand-text { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .nav-links { list-style: none; display: flex; gap: var(--spacing-md); }
+        .nav-link a {
+            font-family: var(--font-head); font-weight: 600; font-size: 0.95rem;
+            color: var(--text-light); border-bottom: 2px solid transparent;
+        }
+        .nav-link a:hover, .nav-link a.active { color: var(--primary); border-bottom-color: var(--secondary); }
+
+        .menu-toggle {
+            display: none; background: none; border: 2px solid var(--border);
+            padding: 8px 12px; cursor: pointer; font-family: var(--font-head);
+            font-weight: 600; color: var(--primary); border-radius: 4px; z-index: 102;
+        }
+        .menu-toggle:hover { background-color: var(--border); color: var(--text-dark); }
+
+        /* 
+         * 3. PAGE SPECIFIC LAYOUT 
+         */
+        .section { padding: var(--spacing-md) var(--spacing-sm); }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        /* Page Header */
+        .page-header {
+            background-color: var(--bg-accent);
+            padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-title { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .page-subtitle { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* Filters */
+        .filter-section {
+            padding: var(--spacing-sm) 0;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 73px; /* Height of navbar approx */
+            z-index: 900;
+        }
+        .filter-list {
+            display: flex; gap: 1rem; overflow-x: auto; padding: 0 var(--spacing-sm);
+            max-width: 1400px; margin: 0 auto;
+            scrollbar-width: none; /* Firefox */
+        }
+        .filter-list::-webkit-scrollbar { display: none; }
+        .filter-btn {
+            background: transparent; border: 1px solid var(--border);
+            padding: 8px 16px; border-radius: 20px; font-family: var(--font-head);
+            font-size: 0.9rem; color: var(--text-light); white-space: nowrap; cursor: pointer;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary); color: #fff; border-color: var(--primary);
+        }
+
+        /* Featured News */
+        .featured-section { border-bottom: 1px solid var(--border); }
+        .featured-grid {
+            display: grid; gap: var(--spacing-md); grid-template-columns: 1fr;
+        }
+        .featured-image {
+            width: 100%; height: 300px; object-fit: cover; border-radius: 8px;
+        }
+        .featured-content { display: flex; flex-direction: column; justify-content: center; }
+        .featured-tag {
+            background-color: var(--secondary); color: #fff; padding: 4px 8px;
+            font-size: 0.75rem; border-radius: 4px; display: inline-block;
+            width: fit-content; margin-bottom: 1rem; font-family: var(--font-head); font-weight: 600;
+        }
+        .featured-headline { font-size: 2rem; margin-bottom: 1rem; }
+        .featured-excerpt { font-size: 1.1rem; color: var(--text-light); margin-bottom: 1.5rem; }
+
+        /* News Grid (Reused style but expanded) */
+        .news-grid {
+            display: grid; gap: var(--spacing-md); grid-template-columns: 1fr;
+            margin-top: var(--spacing-md);
+        }
+        .news-card {
+            background-color: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .news-image { height: 220px; width: 100%; object-fit: cover; }
+        .news-content { padding: var(--spacing-sm); flex-grow: 1; display: flex; flex-direction: column; }
+        .news-meta {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;
+        }
+        .news-category {
+            font-family: var(--font-head); font-size: 0.75rem; color: var(--primary);
+            font-weight: 600; text-transform: uppercase;
+        }
+        .news-date {
+            font-family: var(--font-head); font-size: 0.75rem; color: var(--text-light);
+        }
+        .news-title { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-dark); font-weight: 700; }
+        .news-excerpt { font-size: 0.95rem; color: var(--text-light); margin-bottom: var(--spacing-sm); flex-grow: 1; }
+        .read-link {
+            font-family: var(--font-head); font-weight: 600; color: var(--primary);
+            font-size: 0.9rem; display: inline-flex; align-items: center; gap: 4px;
+        }
+        .read-link:hover { color: var(--secondary); text-decoration: underline; }
+
+        /* Footer (Same as Home) */
+        footer {
+            background-color: #111; color: #aaa; padding: var(--spacing-lg) var(--spacing-sm);
+            font-size: 0.9rem; border-top: 5px solid var(--primary); margin-top: var(--spacing-lg);
+        }
+        .footer-grid {
+            display: grid; gap: var(--spacing-md);
+            grid-template-columns: 1fr; max-width: 1400px; margin: 0 auto;
+        }
+        .footer-col h4 { color: #fff; margin-bottom: 1rem; font-size: 1.1rem; }
+        .footer-links-list { list-style: none; }
+        .footer-links-list li { margin-bottom: 0.5rem; }
+        .footer-links-list a { color: #aaa; transition: none; }
+        .footer-links-list a:hover { color: var(--secondary); text-decoration: underline; }
+        .footer-bottom {
+            text-align: center; margin-top: var(--spacing-md); padding-top: var(--spacing-md);
+            border-top: 1px solid #333; color: #666; font-size: 0.8rem;
+        }
+        .footer-socials { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-socials svg { fill: #aaa; width: 20px; height: 20px; }
+        .footer-socials svg:hover { fill: var(--secondary); }
+
+        /* 
+         * 4. RESPONSIVE BREAKPOINTS 
+         */
+        @media (max-width: 1023px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background-color: var(--bg-card); flex-direction: column;
+                padding: var(--spacing-sm); border-bottom: 2px solid var(--primary);
+            }
+            .nav-links.active { display: flex; }
+            .nav-link a { display: block; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+            .nav-link:last-child a { border-bottom: none; }
+        }
+
+        @media (min-width: 768px) {
+            .section { padding: var(--spacing-lg) var(--spacing-md); }
+            
+            /* Grids */
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .page-title { font-size: 3.5rem; }
+            
+            .featured-image { height: 400px; }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-toggle { display: none; }
+            .nav-links {
+                display: flex; position: static; flex-direction: row; box-shadow: none;
+                border: none; padding: 0; background: transparent; gap: 2rem;
+            }
+            .nav-link a { padding: 0 0 4px 0; border-bottom: 2px solid transparent; }
+            
+            /* Featured Section Split */
+            .featured-grid { grid-template-columns: 1.5fr 1fr; align-items: center; }
+            .featured-image { height: 100%; min-height: 400px; }
+
+            /* News Grid */
+            .news-grid { grid-template-columns: repeat(3, 1fr); }
+            
+            /* Footer Grid */
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (min-width: 1280px) {
+            .container { padding: 0 var(--spacing-md); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171178/kwamwena/logo_brrosj.png" alt="Logo" class="logo" />
+                <h1 class="brand-text">Kwamwena Hub</h1>
+            </div>
+            <button class="menu-toggle" id="menuBtn">MENU</button>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-link"><a href="index.html">Home</a></li>
+                <!-- Active Class on News -->
+                <li class="nav-link"><a href="#" class="active">News</a></li>
+                <li class="nav-link"><a href="#">About</a></li>
+                <li class="nav-link"><a href="#">Services</a></li>
+                <li class="nav-link"><a href="#">Team</a></li>
+                <li class="nav-link"><a href="#">Projects</a></li>
+                <li class="nav-link"><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">News & Updates</h1>
+            <p class="page-subtitle">Stay informed about developments, events, and stories from the Meanwood Kwamwena community.</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-section">
+        <div class="filter-list">
+            <button class="filter-btn active">All Stories</button>
+            <button class="filter-btn">Development</button>
+            <button class="filter-btn">Events</button>
+            <button class="filter-btn">Security</button>
+            <button class="filter-btn">Utilities (Water/Power)</button>
+            <button class="filter-btn">Announcements</button>
+        </div>
+    </div>
+
+    <!-- Featured Story -->
+    <section class="section featured-section">
+        <div class="container">
+            <div class="featured-grid">
+                <div class="featured-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1590502260462-238499278988?auto=format&fit=crop&q=80&w=1200" alt="Construction site" class="featured-image">
+                </div>
+                <div class="featured-content">
+                    <span class="featured-tag">DEVELOPMENT</span>
+                    <h2 class="featured-headline">Phase 3 Drainage System Construction Underway</h2>
+                    <p class="featured-excerpt">The long-awaited drainage construction for Phase 3 has officially begun. The contractor, BuildWell Zambia, has mobilized on-site this week. This project aims to resolve the flooding issues experienced during the last rainy season.</p>
+                    <a href="#" class="btn-primary">Read Full Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main News Feed -->
+    <section class="section news-feed">
+        <div class="container">
+            <div class="news-grid">
+                <!-- News Item 1 -->
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=800" alt="Meeting" class="news-image" />
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Events</span>
+                            <span class="news-date">Oct 12, 2023</span>
+                        </div>
+                        <h3 class="news-title">Annual General Meeting 2023 Recap</h3>
+                        <p class="news-excerpt">A summary of the resolutions passed during the AGM, including the new security levy structure.</p>
+                        <a href="#" class="read-link">Read full story &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 2 -->
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1558905544-3bf687c46237?auto=format&fit=crop&q=80&w=800" alt="Roads" class="news-image" />
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Development</span>
+                            <span class="news-date">Oct 05, 2023</span>
+                        </div>
+                        <h3 class="news-title">Phase 2 Roadworks Grading Schedule</h3>
+                        <p class="news-excerpt">The grading schedule for the main access roads in Phase 2 has been released. Check when your road is affected.</p>
+                        <a href="#" class="read-link">Read full story &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 3 -->
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=800" alt="Nature" class="news-image" />
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Environment</span>
+                            <span class="news-date">Sep 28, 2023</span>
+                        </div>
+                        <h3 class="news-title">Valley Green Initiative Success</h3>
+                        <p class="news-excerpt">Over 500 indigenous trees were planted last weekend thanks to the volunteers from the youth group.</p>
+                        <a href="#" class="read-link">Read full story &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 4 -->
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800" alt="Construction" class="news-image" />
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Utilities</span>
+                            <span class="news-date">Sep 15, 2023</span>
+                        </div>
+                        <h3 class="news-title">ZESCO Transformer Upgrade</h3>
+                        <p class="news-excerpt">ZESCO will be upgrading the transformer serving Section B this Tuesday. Expect power interruption from 08:00 to 14:00.</p>
+                        <a href="#" class="read-link">Read full story &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 5 -->
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1555876484-837c50349e12?auto=format&fit=crop&q=80&w=800" alt="Security" class="news-image" />
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Security</span>
+                            <span class="news-date">Sep 10, 2023</span>
+                        </div>
+                        <h3 class="news-title">Neighborhood Watch Report: August</h3>
+                        <p class="news-excerpt">Crime statistics for August show a 20% decrease in incidents thanks to the new patrol schedules.</p>
+                        <a href="#" class="read-link">Read full story &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 6 -->
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1472653431158-6364773b2a56?auto=format&fit=crop&q=80&w=800" alt="Market" class="news-image" />
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">Events</span>
+                            <span class="news-date">Sep 01, 2023</span>
+                        </div>
+                        <h3 class="news-title">Community Market Day Announced</h3>
+                        <p class="news-excerpt">Registration is now open for vendors wishing to sell at the upcoming Kwamwena Christmas Market.</p>
+                        <a href="#" class="read-link">Read full story &rarr;</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="center-btn-wrapper">
+                <button class="btn-secondary">Load More Stories</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">From the Residents</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Our Projects</a></li>
+                    <li><a href="#">Image Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Involvement</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Donate / Support Us</a></li>
+                    <li><a href="#">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p style="margin-bottom: 10px; font-size: 0.85rem;">Follow us on social media for real-time updates.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 16.78c-2.6 0-4.73-2.13-4.73-4.73s2.13-4.73 4.73-4.73 4.73 2.13 4.73 4.73-2.13 4.73-4.73 4.73z"/></svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="year"></span> Meanwood Kwamwena Community Hub. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dynamic Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Menu Toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuBtn.textContent = 'CLOSE';
+                    menuBtn.style.backgroundColor = 'var(--primary)';
+                    menuBtn.style.color = '#fff';
+                    menuBtn.style.borderColor = 'var(--primary)';
+                } else {
+                    menuBtn.textContent = 'MENU';
+                    menuBtn.style.backgroundColor = 'transparent';
+                    menuBtn.style.color = 'var(--primary)';
+                    menuBtn.style.borderColor = 'var(--border)';
+                }
+            });
+
+            // Filter Buttons Logic (Visual only for prototype)
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

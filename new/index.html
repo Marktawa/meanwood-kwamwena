@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meanwood Kwamwena Community Hub</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,400;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* 
+         * 1. RESET & VARIABLES 
+         */
+        :root {
+            --primary: #2c5e55;
+            /* Deep Forest Green */
+            --primary-hover: #1e423b;
+            --secondary: #d4a373;
+            /* Muted Gold */
+            --bg-body: #fdfbf7;
+            /* Warm Off-White */
+            --bg-card: #ffffff;
+            --bg-accent: #f4f1ea;
+            /* Light Beige */
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+
+            --font-head: 'Inter', sans-serif;
+            --font-body: 'Merriweather', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility: Buttons */
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 12px 28px;
+            border-radius: 4px;
+            border: 2px solid var(--primary);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary);
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 12px 28px;
+            border-radius: 4px;
+            border: 2px solid var(--primary);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-white {
+            background-color: #fff;
+            color: var(--primary);
+            border: 2px solid #fff;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            font-family: var(--font-head);
+        }
+
+        .btn-white:hover {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        .center-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: var(--spacing-md);
+        }
+
+        /* 
+         * 2. HEADER & NAVIGATION 
+         */
+        .navbar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            z-index: 102;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .brand-text {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-link a {
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid var(--border);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: var(--font-head);
+            font-weight: 600;
+            color: var(--primary);
+            border-radius: 4px;
+            z-index: 102;
+        }
+
+        .menu-toggle:hover {
+            background-color: var(--border);
+            color: var(--text-dark);
+        }
+
+        /* 
+         * 3. LAYOUT COMPONENTS 
+         */
+        .section {
+            padding: var(--spacing-md) var(--spacing-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Split Layout (Used for About & Support) */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            /* Mobile Default */
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .split-image-wrapper img {
+            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .split-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Hero */
+        .hero-section {
+            padding: var(--spacing-md) var(--spacing-sm);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .hero-text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tagline {
+            display: inline-block;
+            background-color: #e6f0ed;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            width: fit-content;
+        }
+
+        .hero-title {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.75rem;
+        }
+
+        .hero-image-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Intro */
+        .intro-section {
+            background-color: var(--bg-card);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Latest News */
+        .news-section {
+            background-color: var(--bg-accent);
+        }
+
+        .news-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .news-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: var(--spacing-sm);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-date {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .news-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+            flex-grow: 1;
+        }
+
+        .read-link {
+            font-family: var(--font-head);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .read-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Services */
+        .services-section {
+            background-color: var(--bg-card);
+        }
+
+        .services-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .service-card {
+            display: block;
+            background-color: var(--bg-body);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            border-top: 4px solid var(--primary);
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .service-card:hover {
+            border-color: var(--secondary);
+            background-color: #fafafa;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            fill: var(--primary);
+            margin: 0 auto 1rem auto;
+            display: block;
+        }
+
+        /* About Us (Custom) */
+        .about-section {
+            background-color: var(--bg-accent);
+        }
+
+        /* .split-layout defined above handles the structure */
+
+        /* Our Team */
+        .team-section {
+            background-color: var(--bg-card);
+        }
+
+        .team-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .team-card {
+            padding: var(--spacing-sm);
+        }
+
+        .team-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto var(--spacing-sm) auto;
+            border: 4px solid var(--bg-accent);
+        }
+
+        .team-role {
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .team-name {
+            font-size: 1.25rem;
+            margin: 4px 0;
+            color: var(--primary);
+        }
+
+        .team-card.dashed {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+        }
+
+        .join-link {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* From Residents (Testimonials) */
+        .residents-section {
+            background-color: #e6f0ed;
+        }
+
+        .quote-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .quote-card {
+            background: var(--bg-card);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quote-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--secondary);
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        .quote-text {
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+            flex-grow: 1;
+        }
+
+        .quote-author-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .quote-mini-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--bg-accent);
+        }
+
+        .quote-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quote-author {
+            font-family: var(--font-head);
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .quote-role {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Partners */
+        .partners-section {
+            background-color: var(--bg-card);
+        }
+
+        .partners-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            justify-items: center;
+        }
+
+        .partner-item {
+            text-align: center;
+            padding: var(--spacing-sm);
+            opacity: 0.8;
+        }
+
+        .partner-item:hover {
+            opacity: 1;
+        }
+
+        .partner-logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: #eee;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--text-light);
+            font-family: var(--font-head);
+        }
+
+        /* Support Us (CTA) */
+        .support-section {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .support-section h2,
+        .support-section p {
+            color: #fff;
+        }
+
+        .support-section .split-image-wrapper img {
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Projects */
+        .projects-section {
+            background-color: var(--bg-accent);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            display: block;
+        }
+
+        .project-card:hover {
+            border-color: var(--secondary);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: var(--spacing-sm);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        /* Image Gallery */
+        .gallery-section {
+            background-color: var(--bg-card);
+        }
+
+        .gallery-grid {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Contact Us */
+        .contact-section {
+            background-color: #222;
+            color: #fff;
+        }
+
+        .contact-container {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .contact-info h2 {
+            color: #fff;
+        }
+
+        .contact-row {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+        .map-wrapper {
+            height: 300px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #333;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: var(--spacing-lg) var(--spacing-sm);
+            font-size: 0.9rem;
+            border-top: 5px solid var(--primary);
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links-list a {
+            color: #aaa;
+            transition: none;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-socials svg {
+            fill: #aaa;
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-socials svg:hover {
+            fill: var(--secondary);
+        }
+
+        /* Featured News */
+        .featured-section {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .featured-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .featured-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-tag {
+            background-color: var(--secondary);
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 1rem;
+            font-family: var(--font-head);
+            font-weight: 600;
+        }
+
+        .featured-headline {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* News Grid (Reused style but expanded) */
+        .news-grid {
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr;
+            margin-top: var(--spacing-md);
+        }
+
+        .news-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-image {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: var(--spacing-sm);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-category {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .news-date {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .news-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .news-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+            flex-grow: 1;
+        }
+
+        .read-link {
+            font-family: var(--font-head);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .read-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* 
+         * 4. RESPONSIVE BREAKPOINTS 
+         */
+        @media (max-width: 1023px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-card);
+                flex-direction: column;
+                padding: var(--spacing-sm);
+                border-bottom: 2px solid var(--primary);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link a {
+                display: block;
+                padding: 12px 16px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-link:last-child a {
+                border-bottom: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+
+            .section,
+            .hero-section {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            /* Grids */
+            .news-grid,
+            .services-grid,
+            .quote-grid,
+            .projects-grid,
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid,
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            /* Footer Grid */
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-toggle {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                background: transparent;
+                gap: 2rem;
+            }
+
+            .nav-link a {
+                padding: 0 0 4px 0;
+                border-bottom: 2px solid transparent;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            .hero-image-wrapper {
+                height: 500px;
+            }
+
+            /* Split Layouts (About & Support) */
+            .split-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* Grids */
+            .news-grid,
+            .services-grid,
+            .quote-grid,
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-grid,
+            .partners-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            /* Footer Grid */
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            /* Featured Section Split */
+            .featured-grid {
+                grid-template-columns: 1.5fr 1fr;
+                align-items: center;
+            }
+
+            .featured-image {
+                height: 100%;
+                min-height: 400px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .section {
+                padding: var(--spacing-lg) 0;
+            }
+
+            .container,
+            .container-narrow,
+            .split-layout {
+                padding: 0 var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171178/kwamwena/logo_brrosj.png"
+                    alt="Logo" class="logo" style="box-shadow: 0 6px 12px rgba(0,0,0,0.15);" />
+                <h1 class="brand-text">Kwamwena Hub</h1>
+            </div>
+            <button class="menu-toggle" id="menuBtn">MENU</button>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-link"><a href="#">Home</a></li>
+                <li class="nav-link"><a href="#">News</a></li>
+                <li class="nav-link"><a href="#">About</a></li>
+                <li class="nav-link"><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-text-content">
+                    <span class="tagline">By residents, for residents</span>
+                    <h2 class="hero-title">Welcome to Meanwood Kwamwena Community Hub</h2>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171446/kwamwena/hero_esz9j4.jpg"
+                        alt="Aerial view" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Story -->
+        <section class="section featured-section">
+            <div class="container">
+                <div class="featured-grid">
+                    <div class="featured-image-wrapper">
+                        <img src="meeting.jpg"
+                            alt="Council meets with Home Owners Association" class="featured-image">
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-tag">UPDATE</span>
+                        <h2 class="featured-headline">Council meets with Home Owners Association</h2>
+                        <p class="featured-excerpt">Chongwe Municipal Council top management, led by the Town Clerk, this afternoon held an interactive meeting with homeowners in Kwamwena to discuss public health issues affecting the area. The meeting was convened at the request of the Kwamwena Home Owners Association</p>
+                        <a href="#" class="btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main News Feed -->
+        <section class="section news-feed">
+            <div class="container">
+                <div class="news-grid">
+                    <!-- News Item 1 -->
+                    <article class="news-card">
+                        <img src="crossing-point.jpg"
+                            alt="Meeting" class="news-image" />
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">Development</span>
+                                <span class="news-date">Jan 02, 2026</span>
+                            </div>
+                            <h3 class="news-title">Phase 3 Box Crossing Point Completed</h3>
+                            <p class="news-excerpt">As we begin the new year we are happy to announce the Box crossing point in Meanwood Kwamwena Phase 3 has been completed and is now open to the public.</p>
+                            <a href="#" class="read-link">Read full story &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- News Item 2 -->
+                    <article class="news-card">
+                        <img src="public_transport.jpg"
+                            alt="Buses in Kulima Tower" class="news-image" />
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">Guide</span>
+                                <span class="news-date">Dec 30, 2025</span>
+                            </div>
+                            <h3 class="news-title">How to get to Kwamwena Valley using public transport</h3>
+                            <p class="news-excerpt">If you’re heading to Kwamwena for the first time, getting there by mini bus is straightforward once you know where to start</p>
+                            <a href="#" class="read-link">Read full story &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- News Item 3 -->
+                    <article class="news-card">
+                        <img src="kwamena3.jpg"
+                            alt="Nature" class="news-image" />
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">Project</span>
+                                <span class="news-date">Dec 26, 2025</span>
+                            </div>
+                            <h3 class="news-title">Let's Map Kwamwena Initiative</h3>
+                            <p class="news-excerpt">The Let’s Map Kwamwena Initiative is a community-driven effort to create a clear, accurate digital map of the Kwamwena Valley neighbourhood</p>
+                            <a href="#" class="read-link">Read full story &rarr;</a>
+                        </div>
+                    </article>
+
+                     <!-- News Item 5 -->
+                    <article class="news-card">
+                        <img src="market.jpg"
+                            alt="Security" class="news-image" />
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">Info</span>
+                                <span class="news-date">Dec 22, 2025</span>
+                            </div>
+                            <h3 class="news-title">Where to shop in Kwamwena Valley</h3>
+                            <p class="news-excerpt">Need to get some groceries for your home? Here is a comprehensive guide of all the places to shop within Kwamwena Valley</p>
+                            <a href="#" class="read-link">Read full story &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- News Item 4 -->
+                    <article class="news-card">
+                        <img src="zesco.jpg"
+                            alt="Construction" class="news-image" />
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">Utilities</span>
+                                <span class="news-date">Dec 21, 2025</span>
+                            </div>
+                            <h3 class="news-title">Have a ZESCO Power Fault? Here is how you can report it</h3>
+                            <p class="news-excerpt">During the rainy season, power faults become more common in areas like Kwamwena Valley, leaving homes and businesses without electricity.</p>
+                            <a href="#" class="read-link">Read full story &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- News Item 6 -->
+                    <article class="news-card">
+                        <img src="schools.jpg"
+                            alt="Market" class="news-image" />
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">Info</span>
+                                <span class="news-date">Dec 01, 2025</span>
+                            </div>
+                            <h3 class="news-title">Schools in Kwamwena Valley</h3>
+                            <p class="news-excerpt">Here is a list of schools available in Kwamwena Valley neighbourhood. From baby class all the way to Grade 12.</p>
+                            <a href="#" class="read-link">Read full story &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. About Us (Split Layout) -->
+        <section class="section about-section">
+            <div class="container split-layout">
+                <!-- Image Left on Desktop -->
+                <div class="split-image-wrapper">
+                    <img src="kwamena4.jpg"
+                        alt="Community gathering">
+                </div>
+                <!-- Text Right -->
+                <div class="split-content">
+                    <h2 class="section-title">About Us</h2>
+                    <p class="intro-text">We are excited to introduce the Meanwood Kwamwena Community Hub, a digital platform created by and for our community.</p>
+                <p class="intro-text">What started as a simple idea over conversations with neighbours has grown into something we believe can truly transform how we connect, share information and support each other.</p>
+                    <p class="intro-text">We are a dedicated group of residents committed to uplifting our community
+                        through technology, connection, and shared resources. Our goal is to make Meanwood Kwamwena the
+                        best place to live in Lusaka.</p>
+                    <a href="#" class="read-link">Read more &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Image Gallery -->
+        <section class="section gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Gallery</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img
+                            src="gallery1.jpg"
+                            alt="Gallery 1"></div>
+                    <div class="gallery-item"><img
+                            src="gallery2.jpg"
+                            alt="Gallery 2"></div>
+                    <div class="gallery-item"><img
+                            src="gallery3.jpg"
+                            alt="Gallery 3"></div>
+                    <div class="gallery-item"><img
+                            src="gallery4.jpg"
+                            alt="Gallery 4"></div>
+                </div>
+                <div class="center-btn-wrapper">
+                    <a href="#" class="read-link">View more &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Contact Us -->
+        <section class="section contact-section">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Contact Us</h2>
+                        <p style="color: #ccc;">Get in touch with the hub team.</p>
+
+                        <div class="contact-details">
+                            <div class="contact-row">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                                <span>admin@kwamwenahub.com</span>
+                            </div>
+                            <div class="contact-row">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                                </svg>
+                                <span>+260 965 982 075</span>
+                            </div>
+                            <div class="contact-row">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                </svg>
+                                <span>Meanwood Kwamwena, Lusaka</span>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" aria-label="WhatsApp">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 16.78c-2.6 0-4.73-2.13-4.73-4.73s2.13-4.73 4.73-4.73 4.73 2.13 4.73 4.73-2.13 4.73-4.73 4.73z" />
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Facebook">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="LinkedIn">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z">
+                                    </path>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="map-wrapper">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.502844192664!2d28.3845!3d-15.4035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19408b8e0a0a0a0a%3A0x0!2sMeanwood%20Kwamwena!5e0!3m2!1sen!2szm!4v1600000000000!5m2!1sen!2szm"
+                            allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Chongwe Municipal Council</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Whatsapp</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Involvement</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Donate</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Advertise</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p style="margin-bottom: 10px; font-size: 0.85rem;">Follow us on social media for real-time updates.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 16.78c-2.6 0-4.73-2.13-4.73-4.73s2.13-4.73 4.73-4.73 4.73 2.13 4.73 4.73-2.13 4.73-4.73 4.73z" />
+                        </svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z">
+                            </path>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="year"></span> Meanwood Kwamwena Community Hub. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuBtn.textContent = 'CLOSE';
+                    menuBtn.style.backgroundColor = 'var(--primary)';
+                    menuBtn.style.color = '#fff';
+                    menuBtn.style.borderColor = 'var(--primary)';
+                } else {
+                    menuBtn.textContent = 'MENU';
+                    menuBtn.style.backgroundColor = 'transparent';
+                    menuBtn.style.color = 'var(--primary)';
+                    menuBtn.style.borderColor = 'var(--border)';
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    menuBtn.textContent = 'MENU';
+                    menuBtn.style.backgroundColor = 'transparent';
+                    menuBtn.style.color = 'var(--primary)';
+                    menuBtn.style.borderColor = 'var(--border)';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

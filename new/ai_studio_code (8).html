@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 3 Drainage Construction Begins - Kwamwena Hub</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * 1. RESET & VARIABLES 
+         */
+        :root {
+            --primary: #2c5e55;       /* Deep Forest Green */
+            --primary-hover: #1e423b; 
+            --secondary: #d4a373;     /* Muted Gold */
+            --bg-body: #fdfbf7;       /* Warm Off-White */
+            --bg-card: #ffffff;
+            --bg-accent: #f4f1ea;     /* Light Beige */
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+            
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            
+            --font-head: 'Inter', sans-serif;
+            --font-body: 'Merriweather', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        img { max-width: 100%; height: auto; display: block; border-radius: 8px; }
+        a { text-decoration: none; color: inherit; }
+        p { margin-bottom: 1.5rem; }
+
+        /* 
+         * 2. HEADER & NAVIGATION 
+         */
+        .navbar {
+            background: var(--bg-card); border-bottom: 1px solid var(--border);
+            padding: var(--spacing-sm); position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1400px; margin: 0 auto; position: relative;
+        }
+        .brand { display: flex; align-items: center; gap: var(--spacing-sm); z-index: 102; }
+        .logo { height: 40px; width: auto; }
+        .brand-text { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-head); font-weight: 800; color: var(--primary); }
+
+        .nav-links { list-style: none; display: flex; gap: var(--spacing-md); }
+        .nav-link a {
+            font-family: var(--font-head); font-weight: 600; font-size: 0.95rem;
+            color: var(--text-light); border-bottom: 2px solid transparent;
+        }
+        .nav-link a:hover { color: var(--primary); border-bottom-color: var(--secondary); }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none; background: none; border: 2px solid var(--border);
+            padding: 8px 12px; cursor: pointer; font-family: var(--font-head);
+            font-weight: 600; color: var(--primary); border-radius: 4px;
+        }
+
+        /* 
+         * 3. ARTICLE LAYOUT 
+         */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-sm);
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile Default */
+            gap: var(--spacing-lg);
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            grid-column: 1 / -1;
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: -1rem;
+        }
+        .breadcrumbs a { color: var(--primary); font-weight: 600; }
+        .breadcrumbs span { margin: 0 8px; color: var(--border); }
+
+        /* Left Column: The Article */
+        .article-content { width: 100%; }
+
+        /* Article Header */
+        .article-header { margin-bottom: var(--spacing-md); }
+        .article-meta {
+            display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;
+            font-family: var(--font-head); font-size: 0.85rem;
+        }
+        .category-tag {
+            background-color: var(--secondary); color: white; padding: 4px 10px;
+            border-radius: 4px; font-weight: 600; text-transform: uppercase;
+        }
+        .publish-date { color: var(--text-light); }
+        
+        .article-title { font-size: 2rem; margin-bottom: var(--spacing-sm); }
+        
+        .hero-img { width: 100%; height: auto; max-height: 500px; object-fit: cover; margin-bottom: var(--spacing-md); }
+
+        /* Typography for Reading */
+        .article-body { font-size: 1.125rem; color: #2d2d2d; }
+        .article-body h2 { font-size: 1.75rem; margin-top: 2.5rem; }
+        .article-body ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .article-body li { margin-bottom: 0.5rem; }
+        
+        blockquote {
+            border-left: 4px solid var(--secondary);
+            padding-left: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            font-style: italic;
+            color: var(--primary);
+            font-size: 1.25rem;
+            background: var(--bg-accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Share Section */
+        .share-section {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-md) 0;
+            margin: var(--spacing-lg) 0;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .share-label { font-family: var(--font-head); font-weight: 700; color: var(--text-dark); }
+        .share-icons { display: flex; gap: 1rem; }
+        .share-icon { width: 24px; height: 24px; fill: var(--text-light); cursor: pointer; }
+        .share-icon:hover { fill: var(--primary); }
+
+        /* Right Column: Sidebar */
+        .sidebar { display: flex; flex-direction: column; gap: var(--spacing-md); }
+        
+        .sidebar-widget {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: var(--spacing-md); border-radius: 8px;
+        }
+        .widget-title { font-size: 1.1rem; border-bottom: 2px solid var(--bg-accent); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+
+        .related-list { list-style: none; }
+        .related-item {
+            display: flex; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem;
+            border-bottom: 1px solid var(--bg-accent);
+        }
+        .related-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .related-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+        .related-info h4 { font-size: 0.95rem; margin-bottom: 4px; font-weight: 600; line-height: 1.4; }
+        .related-info h4:hover { color: var(--secondary); }
+        .related-date { font-size: 0.75rem; color: var(--text-light); font-family: var(--font-head); }
+
+        /* Newsletter Widget */
+        .newsletter-form input {
+            width: 100%; padding: 10px; margin-bottom: 10px;
+            border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-head);
+        }
+        .btn-subscribe {
+            width: 100%; background-color: var(--primary); color: #fff;
+            padding: 10px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;
+        }
+        .btn-subscribe:hover { background-color: var(--secondary); }
+
+        /* Footer */
+        footer {
+            background-color: #111; color: #aaa; padding: var(--spacing-lg) var(--spacing-sm);
+            font-size: 0.9rem; border-top: 5px solid var(--primary); margin-top: var(--spacing-lg);
+        }
+        .footer-grid {
+            display: grid; gap: var(--spacing-md);
+            grid-template-columns: 1fr; max-width: 1400px; margin: 0 auto;
+        }
+        .footer-col h4 { color: #fff; margin-bottom: 1rem; font-size: 1.1rem; font-family: var(--font-head); }
+        .footer-links-list { list-style: none; }
+        .footer-links-list li { margin-bottom: 0.5rem; }
+        .footer-links-list a { color: #aaa; transition: none; }
+        .footer-links-list a:hover { color: var(--secondary); text-decoration: underline; }
+        .footer-bottom {
+            text-align: center; margin-top: var(--spacing-md); padding-top: var(--spacing-md);
+            border-top: 1px solid #333; color: #666; font-size: 0.8rem; font-family: var(--font-head);
+        }
+        .footer-socials { display: flex; gap: 1rem; margin-top: 1rem; }
+        .footer-socials svg { fill: #aaa; width: 20px; height: 20px; }
+        .footer-socials svg:hover { fill: var(--secondary); }
+
+        /* 
+         * 4. RESPONSIVE BREAKPOINTS 
+         */
+        @media (max-width: 1023px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background-color: var(--bg-card); flex-direction: column;
+                padding: var(--spacing-sm); border-bottom: 2px solid var(--primary);
+            }
+            .nav-links.active { display: flex; }
+            .nav-link a { display: block; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+        }
+
+        @media (min-width: 768px) {
+            .article-title { font-size: 2.5rem; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-toggle { display: none; }
+            .nav-links {
+                display: flex; position: static; flex-direction: row; border: none; padding: 0; gap: 2rem;
+            }
+            .nav-link a { padding: 0 0 4px 0; border-bottom: 2px solid transparent; }
+            
+            /* Sidebar Layout Active */
+            .main-container { grid-template-columns: 2fr 1fr; }
+            
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171178/kwamwena/logo_brrosj.png" alt="Logo" class="logo" />
+                <h1 class="brand-text">Kwamwena Hub</h1>
+            </div>
+            <button class="menu-toggle" id="menuBtn">MENU</button>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-link"><a href="index.html">Home</a></li>
+                <li class="nav-link"><a href="news.html" style="color:var(--primary); border-bottom-color:var(--secondary);">News</a></li>
+                <li class="nav-link"><a href="#">About</a></li>
+                <li class="nav-link"><a href="#">Services</a></li>
+                <li class="nav-link"><a href="#">Team</a></li>
+                <li class="nav-link"><a href="#">Projects</a></li>
+                <li class="nav-link"><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a> <span>/</span> <a href="news.html">News</a> <span>/</span> Phase 3 Drainage Construction
+        </div>
+
+        <!-- Article Column -->
+        <article class="article-content">
+            <header class="article-header">
+                <div class="article-meta">
+                    <span class="category-tag">Development</span>
+                    <span class="publish-date">October 24, 2025</span>
+                    <span style="color:var(--border);">|</span>
+                    <span>By Hub Team</span>
+                </div>
+                <h1 class="article-title">Phase 3 Drainage System Construction Officially Underway</h1>
+            </header>
+
+            <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171446/kwamwena/hero_esz9j4.jpg" alt="Construction site with heavy machinery" class="hero-img">
+
+            <div class="article-body">
+                <p><strong>Meanwood Kwamwena</strong> — Residents of Kwamwena Phase 3 can finally breathe a sigh of relief as the long-awaited drainage construction project officially kicked off this week. The project, aimed at mitigating the perennial flooding issues experienced during the rainy season, marks a significant milestone in the development of our valley.</p>
+
+                <p>Contractors from BuildWell Zambia mobilized on-site early Monday morning, beginning with the grading of the main access routes and the excavation of primary drainage channels along Great East Extension Road.</p>
+
+                <h2>Addressing Seasonal Flooding</h2>
+                <p>For years, residents in the lower sections of Phase 3 have faced challenges with waterlogging, often making roads impassable during heavy downpours. The new system is designed to channel water efficiently towards the main Chongwe river tributaries, bypassing residential zones.</p>
+
+                <blockquote>
+                    "This is not just about digging trenches; it's about securing our homes and improving the value of our properties. We are grateful that the Council and the Developers have finally acted on our petitions." 
+                    <br><span style="font-size:0.9rem; font-weight:600; margin-top:10px; display:block;">— Mr. Phiri, Phase 3 Resident Representative</span>
+                </blockquote>
+
+                <h2>Project Timeline and Scope</h2>
+                <p>The engineering team has outlined a comprehensive 4-month timeline to ensure major works are completed before the peak of the rainy season in January. The scope of work includes:</p>
+                <ul>
+                    <li>Excavation of 5km of primary storm drains.</li>
+                    <li>Installation of concrete culverts at 12 key intersections.</li>
+                    <li>Reinforcement of bridge crossings near the market area.</li>
+                    <li>Grading and compacting of adjacent service roads.</li>
+                </ul>
+
+                <h2>Traffic Diversions</h2>
+                <p>Residents are advised that there will be temporary road closures and diversions in place. The main entrance to Phase 3 via the Police Post will remain open, but the shortcut route through Section D will be closed for the next three weeks.</p>
+                
+                <p>We urge all motorists to drive with caution, observe the temporary signage, and cooperate with the flagmen on site. The Hub will continue to provide weekly updates on the progress of the construction.</p>
+            </div>
+
+            <!-- Share Section -->
+            <div class="share-section">
+                <span class="share-label">Share this story:</span>
+                <div class="share-icons">
+                    <!-- Facebook -->
+                    <svg class="share-icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    <!-- WhatsApp -->
+                    <svg class="share-icon" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 16.78c-2.6 0-4.73-2.13-4.73-4.73s2.13-4.73 4.73-4.73 4.73 2.13 4.73 4.73-2.13 4.73-4.73 4.73z"/></svg>
+                    <!-- Twitter/X -->
+                    <svg class="share-icon" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    <!-- Copy Link -->
+                    <svg class="share-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </div>
+            </div>
+
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+            <!-- Widget: Related News -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Related Updates</h3>
+                <ul class="related-list">
+                    <li class="related-item">
+                        <img src="https://images.unsplash.com/photo-1558905544-3bf687c46237?auto=format&fit=crop&q=80&w=200" class="related-thumb" alt="Roadworks">
+                        <div class="related-info">
+                            <a href="#"><h4>Phase 2 Roadworks Grading Schedule Released</h4></a>
+                            <span class="related-date">Oct 05, 2025</span>
+                        </div>
+                    </li>
+                    <li class="related-item">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=200" class="related-thumb" alt="Transformer">
+                        <div class="related-info">
+                            <a href="#"><h4>ZESCO Transformer Upgrade Scheduled for Tuesday</h4></a>
+                            <span class="related-date">Sep 15, 2025</span>
+                        </div>
+                    </li>
+                    <li class="related-item">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=200" class="related-thumb" alt="Trees">
+                        <div class="related-info">
+                            <a href="#"><h4>Valley Green Initiative: 500 Trees Planted</h4></a>
+                            <span class="related-date">Sep 28, 2025</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Widget: Newsletter -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Stay Informed</h3>
+                <p style="font-size:0.9rem; margin-bottom:1rem;">Get the latest Kwamwena news directly in your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">From the Residents</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Our Projects</a></li>
+                    <li><a href="#">Image Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Involvement</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Donate / Support Us</a></li>
+                    <li><a href="#">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p style="margin-bottom: 10px; font-size: 0.85rem;">Follow us on social media for real-time updates.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 16.78c-2.6 0-4.73-2.13-4.73-4.73s2.13-4.73 4.73-4.73 4.73 2.13 4.73 4.73-2.13 4.73-4.73 4.73z"/></svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="year"></span> Meanwood Kwamwena Community Hub. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuBtn.textContent = 'CLOSE';
+                    menuBtn.style.backgroundColor = 'var(--primary)';
+                    menuBtn.style.color = '#fff';
+                    menuBtn.style.borderColor = 'var(--primary)';
+                } else {
+                    menuBtn.textContent = 'MENU';
+                    menuBtn.style.backgroundColor = 'transparent';
+                    menuBtn.style.color = 'var(--primary)';
+                    menuBtn.style.borderColor = 'var(--border)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

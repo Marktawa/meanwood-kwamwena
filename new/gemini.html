@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meanwood Kwamwena Community Hub</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary-color: #2F5D62; /* Deep Teal/Green */
+            --secondary-color: #A7C4BC; /* Soft Sage */
+            --accent-color: #DFEEEA; /* Very Light Green */
+            --text-dark: #1F2937;
+            --text-light: #4B5563;
+            --white: #FFFFFF;
+            --bg-body: #F9FAFB;
+            
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            
+            --radius-md: 12px;
+            --radius-lg: 24px;
+            
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* =========================================
+           2. BASE STYLES (Mobile First < 480px)
+           ========================================= */
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: var(--spacing-md) var(--spacing-sm);
+            text-align: center;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .site-title h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .site-title p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            padding: var(--spacing-md) var(--spacing-sm);
+        }
+
+        .content-wrapper {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-content {
+            padding: var(--spacing-md);
+        }
+
+        .text-content h2 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .text-content p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* =========================================
+           3. BREAKPOINT 1: Large Mobile (480px+)
+           ========================================= */
+        @media (min-width: 480px) {
+            .site-title h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero-image-container {
+                height: 300px;
+            }
+        }
+
+        /* =========================================
+           4. BREAKPOINT 2: Tablet (768px+)
+           ========================================= */
+        @media (min-width: 768px) {
+            header {
+                padding: var(--spacing-md);
+            }
+
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 720px;
+                margin: 0 auto;
+            }
+
+            .site-title {
+                text-align: right;
+            }
+
+            .site-title h1 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: var(--spacing-lg);
+            }
+
+            .content-wrapper {
+                max-width: 720px;
+                margin: 0 auto;
+            }
+        }
+
+        /* =========================================
+           5. BREAKPOINT 3: Laptop/Small Desktop (1024px+)
+           ========================================= */
+        @media (min-width: 1024px) {
+            .header-container {
+                max-width: 960px;
+            }
+
+            .content-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Split Layout */
+                align-items: center;
+                max-width: 960px;
+                margin: 0 auto;
+                border-radius: var(--radius-lg);
+            }
+
+            /* Change order: Text on left, Image on right */
+            .hero-image-container {
+                order: 2; 
+                height: 100%;
+                min-height: 450px;
+            }
+
+            .text-content {
+                order: 1;
+                padding: var(--spacing-lg);
+            }
+
+            .text-content h2 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .text-content p {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* =========================================
+           6. BREAKPOINT 4: Large Desktop (1280px+)
+           ========================================= */
+        @media (min-width: 1280px) {
+            .header-container {
+                max-width: 1200px;
+            }
+
+            .content-wrapper {
+                max-width: 1200px;
+            }
+
+            .site-title h1 {
+                font-size: 2rem;
+            }
+
+            .text-content {
+                padding: 5rem;
+            }
+        }
+
+        /* =========================================
+           7. BREAKPOINT 5: Ultra Wide (1600px+)
+           ========================================= */
+        @media (min-width: 1600px) {
+            :root {
+                --bg-body: #DFEEEA; /* Change background style for wide screens */
+            }
+
+            .header-container, .content-wrapper {
+                max-width: 1400px;
+            }
+
+            main {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 80vh; /* Center vertically on huge screens */
+            }
+
+            .site-title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .text-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171178/kwamwena/logo_brrosj.png" alt="Meanwood Kwamwena Logo" class="logo" />
+            
+            <div class="site-title">
+                <h1>Meanwood Kwamwena<br>Community Hub</h1>
+                <p>By residents, for residents</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-wrapper">
+            
+            <!-- Hero Image -->
+            <div class="hero-image-container">
+                <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171446/kwamwena/hero_esz9j4.jpg" alt="Aerial view of Kwamwena Valley" class="hero-image" />
+            </div>
+
+            <!-- Text Content -->
+            <div class="text-content">
+                <h2>Welcome to your Community Hub</h2>
+                <p>We are excited to introduce the Meanwood Kwamwena Community Hub, a digital platform created by and for our community.</p>
+                <p>What started as a simple idea over conversations with neighbours has grown into something we believe can truly transform how we connect, share information, and support each other.</p>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>

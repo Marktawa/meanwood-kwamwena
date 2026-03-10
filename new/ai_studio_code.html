@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meanwood Kwamwena Community Hub</title>
+    
+    <!-- Fonts: Inter (Sans-serif) for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * 1. RESET & VARIABLES 
+         */
+        :root {
+            /* Palette: Earthy, Community-focused colors */
+            --primary: #2c5e55;       /* Deep Forest Green */
+            --secondary: #d4a373;     /* Muted Gold/Earth */
+            --bg-body: #fdfbf7;       /* Warm Off-White */
+            --bg-card: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            
+            /* Typography */
+            --font-head: 'Inter', sans-serif;
+            --font-body: 'Merriweather', serif; /* Serif for reading comfort */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 
+         * 2. LAYOUT COMPONENTS 
+         */
+        
+        /* Navbar */
+        .navbar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .brand-text {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Container */
+        main {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            padding: var(--spacing-md) var(--spacing-sm);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: var(--spacing-md);
+            /* Default Mobile: Stacked */
+            grid-template-columns: 1fr; 
+        }
+
+        .hero-text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tagline {
+            display: inline-block;
+            background-color: #e6f0ed;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            width: fit-content;
+        }
+
+        .hero-title {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .hero-image-wrapper {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content Section */
+        .content-section {
+            background-color: var(--bg-card);
+            padding: var(--spacing-md) var(--spacing-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        .content-container {
+            max-width: 800px; /* Reading width */
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        footer {
+            text-align: center;
+            padding: var(--spacing-md);
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            background-color: #e5e5e5;
+        }
+
+        /* 
+         * 3. RESPONSIVE BREAKPOINTS 
+         * The design adapts at 5 specific width points
+         */
+
+        /* Breakpoint 1: Large Mobile (480px+) */
+        @media (min-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .brand-text {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Breakpoint 2: Tablets (768px+) */
+        @media (min-width: 768px) {
+            .hero-section {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .intro-text {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Breakpoint 3: Laptops/Small Desktops (1024px+) */
+        @media (min-width: 1024px) {
+            .hero-container {
+                /* Switch to Side-by-Side Layout */
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            .hero-image-wrapper {
+                height: 500px; /* Fixed height for consistency */
+            }
+
+            .nav-container {
+                padding: 0 var(--spacing-md);
+            }
+        }
+
+        /* Breakpoint 4: Desktops (1280px+) */
+        @media (min-width: 1280px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .content-section {
+                padding: var(--spacing-lg) 0;
+            }
+        }
+
+        /* Breakpoint 5: Ultra Wide (1600px+) */
+        @media (min-width: 1600px) {
+            :root {
+                --spacing-lg: 6rem; /* Increase spacing scale */
+            }
+
+            .hero-container {
+                max-width: 1500px;
+            }
+
+            .hero-title {
+                font-size: 4.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171178/kwamwena/logo_brrosj.png" alt="Kwamwena Hub Logo" class="logo" />
+                <h1 class="brand-text">Kwamwena Hub</h1>
+            </div>
+            <!-- Dynamic greeting inserted by JS here -->
+            <div id="greeting" style="font-family: var(--font-head); font-size: 0.9rem; font-weight: 600;"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-text-content">
+                    <span class="tagline">By residents, for residents</span>
+                    <h2 class="hero-title">Welcome to Meanwood Kwamwena Community Hub</h2>
+                </div>
+                
+                <div class="hero-image-wrapper">
+                    <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171446/kwamwena/hero_esz9j4.jpg" alt="Aerial view of Kwamwena Valley" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="content-container">
+                <p class="intro-text">We are excited to introduce the Meanwood Kwamwena Community Hub, a digital platform created by and for our community.</p>
+                <p class="intro-text">What started as a simple idea over conversations with neighbours has grown into something we believe can truly transform how we connect, share information and support each other.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> Meanwood Kwamwena Community Hub.
+    </footer>
+
+    <script>
+        // JavaScript for dynamic functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Dynamic Year for Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 2. Dynamic Greeting based on time of day
+            const greetingElement = document.getElementById('greeting');
+            const hour = new Date().getHours();
+            let greetingText = '';
+
+            if (hour < 12) {
+                greetingText = 'Good Morning, Neighbor';
+            } else if (hour < 18) {
+                greetingText = 'Good Afternoon, Neighbor';
+            } else {
+                greetingText = 'Good Evening, Neighbor';
+            }
+
+            // Only display greeting on screens larger than mobile to keep header clean
+            if(window.innerWidth > 480) {
+                greetingElement.textContent = greetingText;
+            }
+
+            // 3. Handle resize for greeting visibility
+            window.addEventListener('resize', () => {
+                if(window.innerWidth > 480) {
+                    greetingElement.textContent = greetingText;
+                } else {
+                    greetingElement.textContent = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

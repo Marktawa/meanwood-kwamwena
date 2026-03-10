@@ -1,0 +1,32 @@
+body {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 5px;
+    font-family: system-ui, sans-serif;
+}
+
+h1 {
+    border-bottom: 1px solid #CCC;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+h2 {
+    display: inline;
+    border-bottom: 1px solid #CCC;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    border-top: 1px solid #CCC;
+    padding: 5px;
+    font-size: small;
+    position: sticky;
+    background: white;
+    bottom: 0;
+}

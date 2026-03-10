@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meanwood Kwamwena Community Hub</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * 1. RESET & VARIABLES 
+         */
+        :root {
+            --primary: #2c5e55;       /* Deep Forest Green */
+            --primary-hover: #1e423b; 
+            --secondary: #d4a373;     /* Muted Gold */
+            --bg-body: #fdfbf7;       /* Warm Off-White */
+            --bg-card: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            
+            --font-head: 'Inter', sans-serif;
+            --font-body: 'Merriweather', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 
+         * 2. HEADER & NAVIGATION 
+         */
+        .navbar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative; /* For absolute positioning of mobile menu */
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            z-index: 102; /* Keep brand above mobile menu */
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .brand-text {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation Links Styles */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-link a {
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+        }
+
+        /* Hover State - Instant change, no transition */
+        .nav-link a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--secondary);
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none; /* Hidden on desktop by default */
+            background: none;
+            border: 2px solid var(--border);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: var(--font-head);
+            font-weight: 600;
+            color: var(--primary);
+            border-radius: 4px;
+            z-index: 102;
+        }
+
+        .menu-toggle:hover {
+            background-color: var(--border);
+            color: var(--text-dark);
+        }
+
+        /* Greeting Text */
+        #greeting {
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary);
+            display: none; /* Hidden on mobile to save space */
+        }
+
+        /* 
+         * 3. LAYOUT COMPONENTS 
+         */
+        main { width: 100%; }
+
+        /* Hero Section */
+        .hero-section {
+            padding: var(--spacing-md) var(--spacing-sm);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: var(--spacing-md);
+            grid-template-columns: 1fr; 
+        }
+
+        .hero-text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tagline {
+            display: inline-block;
+            background-color: #e6f0ed;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+            width: fit-content;
+        }
+
+        .hero-title {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.75rem;
+        }
+
+        .hero-image-wrapper {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content Section */
+        .content-section {
+            background-color: var(--bg-card);
+            padding: var(--spacing-md) var(--spacing-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        footer {
+            text-align: center;
+            padding: var(--spacing-md);
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            background-color: #e5e5e5;
+        }
+
+        /* 
+         * 4. RESPONSIVE BREAKPOINTS (5 Levels)
+         */
+
+        /* Base styles above are for < 480px (Mobile Portrait) */
+        /* In Mobile, we hide the nav links and show the button */
+        @media (max-width: 1023px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none; /* Hidden by default */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-card);
+                flex-direction: column;
+                padding: var(--spacing-sm);
+                border-bottom: 2px solid var(--primary);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                gap: 0;
+            }
+
+            /* This class is toggled via JS */
+            .nav-links.active {
+                display: flex; 
+            }
+
+            .nav-link a {
+                display: block;
+                padding: 12px 16px;
+                border-bottom: 1px solid var(--border);
+                font-size: 1.1rem;
+            }
+
+            .nav-link:last-child a {
+                border-bottom: none;
+            }
+        }
+
+        /* Breakpoint 1: Large Mobile (480px+) */
+        @media (min-width: 480px) {
+            .hero-title { font-size: 2rem; }
+            .brand-text { font-size: 1.25rem; }
+        }
+
+        /* Breakpoint 2: Tablets (768px+) */
+        @media (min-width: 768px) {
+            .hero-section { padding: var(--spacing-lg) var(--spacing-md); }
+            .hero-title { font-size: 2.5rem; }
+            .intro-text { font-size: 1.25rem; }
+        }
+
+        /* Breakpoint 3: Laptops/Small Desktop (1024px+) */
+        /* SWITCH TO DESKTOP NAVIGATION HERE */
+        @media (min-width: 1024px) {
+            .menu-toggle { display: none; }
+            
+            .nav-links {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                background: transparent;
+                gap: 2rem;
+            }
+
+            .nav-link a {
+                padding: 0 0 4px 0;
+                border-bottom: 2px solid transparent;
+                font-size: 0.95rem;
+            }
+
+            /* Show greeting only on large screens */
+            #greeting { display: block; }
+
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            .hero-image-wrapper { height: 500px; }
+            .nav-container { padding: 0 var(--spacing-md); }
+        }
+
+        /* Breakpoint 4: Desktops (1280px+) */
+        @media (min-width: 1280px) {
+            .hero-title { font-size: 3.5rem; }
+            .content-section { padding: var(--spacing-lg) 0; }
+        }
+
+        /* Breakpoint 5: Ultra Wide (1600px+) */
+        @media (min-width: 1600px) {
+            :root { --spacing-lg: 6rem; }
+            .hero-container { max-width: 1500px; }
+            .hero-title { font-size: 4.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171178/kwamwena/logo_brrosj.png" alt="Kwamwena Hub Logo" class="logo" />
+                <h1 class="brand-text">Kwamwena Hub</h1>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="menuBtn" aria-label="Toggle Navigation">
+                MENU
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-link"><a href="#">Home</a></li>
+                <li class="nav-link"><a href="#">News</a></li>
+                <li class="nav-link"><a href="#">About</a></li>
+                <li class="nav-link"><a href="#">Services</a></li>
+                <li class="nav-link"><a href="#">Contact</a></li>
+            </ul>
+
+            <!-- Dynamic greeting (Desktop only) -->
+            <div id="greeting"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-text-content">
+                    <span class="tagline">By residents, for residents</span>
+                    <h2 class="hero-title">Welcome to Meanwood Kwamwena Community Hub</h2>
+                </div>
+                
+                <div class="hero-image-wrapper">
+                    <img src="https://res.cloudinary.com/craigsims808/image/upload/v1764171446/kwamwena/hero_esz9j4.jpg" alt="Aerial view of Kwamwena Valley" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="content-container">
+                <p class="intro-text">We are excited to introduce the Meanwood Kwamwena Community Hub, a digital platform created by and for our community.</p>
+                <p class="intro-text">What started as a simple idea over conversations with neighbours has grown into something we believe can truly transform how we connect, share information and support each other.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> Meanwood Kwamwena Community Hub.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Dynamic Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 2. Dynamic Greeting
+            const greetingElement = document.getElementById('greeting');
+            const hour = new Date().getHours();
+            let greetingText = (hour < 12) ? 'Good Morning' : (hour < 18) ? 'Good Afternoon' : 'Good Evening';
+            greetingElement.textContent = greetingText + ', Neighbor';
+
+            // 3. Mobile Menu Toggle Logic
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', () => {
+                // Toggle the 'active' class to show/hide menu instantly
+                navLinks.classList.toggle('active');
+                
+                // Update Button text for better UX
+                if (navLinks.classList.contains('active')) {
+                    menuBtn.textContent = 'CLOSE';
+                    menuBtn.style.backgroundColor = 'var(--primary)';
+                    menuBtn.style.color = '#fff';
+                    menuBtn.style.borderColor = 'var(--primary)';
+                } else {
+                    menuBtn.textContent = 'MENU';
+                    menuBtn.style.backgroundColor = 'transparent';
+                    menuBtn.style.color = 'var(--primary)';
+                    menuBtn.style.borderColor = 'var(--border)';
+                }
+            });
+
+            // Close menu if clicking outside (Optional polish)
+            document.addEventListener('click', (e) => {
+                if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    menuBtn.textContent = 'MENU';
+                    menuBtn.style.backgroundColor = 'transparent';
+                    menuBtn.style.color = 'var(--primary)';
+                    menuBtn.style.borderColor = 'var(--border)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
